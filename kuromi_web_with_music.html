@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pesan Buat Kamu 💌</title>
+  <style>
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+    body {
+      background-image: url('https://i.pinimg.com/originals/6f/1d/99/6f1d995bb2c60f1886f383b3f63f5e64.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      font-family: 'Comic Sans MS', cursive;
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+      overflow: hidden;
+    }
+    .card {
+      background: rgba(0,0,0,0.6);
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 0 20px #000;
+      animation: float 3s ease-in-out infinite;
+    }
+    .btn {
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+      transform: scale(1.1);
+    }
+    .yes {
+      background-color: #ff69b4;
+      color: white;
+    }
+    .no {
+      background-color: #ccc;
+      color: #333;
+      position: relative;
+    }
+    .hidden {
+      display: none;
+    }
+    .kuromi-floating {
+      position: absolute;
+      width: 80px;
+      animation: float 4s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="https://files.catbox.moe/4g1vzw.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <img src="https://i.pinimg.com/originals/fe/39/71/fe39718057a5fd69a63bc55dc7a32b91.png" class="kuromi-floating" style="top: 20px; left: 20px;">
+  <img src="https://i.pinimg.com/originals/f6/b6/88/f6b68805c962c0f64e4d597bdf725166.png" class="kuromi-floating" style="top: 80px; right: 20px;">
+
+  <div class="card">
+    <h2>Hai kamu 👀</h2>
+    <p>Aku cuma mau nanya nih dikit aja...</p>
+    <p><strong>Kalo aku ngilang seminggu, kamu gimana?</strong></p>
+    <textarea rows="3" cols="40" placeholder="Tulis di sini yaa..."></textarea><br><br>
+
+    <p>Kamu kangen aku gak? 😳</p>
+    <button class="btn yes" onclick="jawabanYes()">Iya, kangen</button>
+    <button class="btn no" id="noBtn" onmouseover="gerakNo()" onclick="gerakNo()">Enggak</button>
+
+    <div id="hasil" class="hidden">
+      <p>Hehe aku juga kangen sama kamu 😚💖</p>
+    </div>
+
+    <div id="nyerahDiv" class="hidden">
+      <button class="btn yes" onclick="nyerahKangen()">Aku nyerah deh, jujur aku kangen sama kamu 😔</button>
+    </div>
+  </div>
+
+  <script>
+    let noCount = 0;
+
+    function jawabanYes() {
+      document.getElementById('hasil').classList.remove('hidden');
+      document.getElementById('nyerahDiv').classList.add('hidden');
+    }
+
+    function gerakNo() {
+      const btn = document.getElementById('noBtn');
+      noCount++;
+      if (noCount > 5) {
+        document.getElementById('nyerahDiv').classList.remove('hidden');
+        btn.classList.add('hidden');
+        return;
+      }
+      const x = Math.floor(Math.random() * 300) - 150;
+      const y = Math.floor(Math.random() * 300) - 150;
+      btn.style.position = 'absolute';
+      btn.style.top = `${btn.offsetTop + y}px`;
+      btn.style.left = `${btn.offsetLeft + x}px`;
+    }
+
+    function nyerahKangen() {
+      document.getElementById('hasil').innerHTML = '<p>Yahh akhirnya ngaku juga 😝 aku juga kangen banget sama kamu 💕</p>';
+      document.getElementById('hasil').classList.remove('hidden');
+      document.getElementById('nyerahDiv').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
